@@ -20,7 +20,7 @@ def main():
         registered_ip = str(ip_address(record['domain_record']['data']))
         if actual_ip != registered_ip:
             print(
-                f'{datetime.now().isoformat()} - Actual IP: {actual_ip} - Registered IP: {registered_ip}\n')
+                f'{datetime.now().isoformat()} - Actual IP: {actual_ip} - Registered IP: {registered_ip}')
             r = requests.patch(f'https://api.digitalocean.com/v2/domains/{DOMAIN}/records/{RECORD_ID}', headers={
                 'Authorization': f'Bearer {TOKEN}'}, json={
                     'data': actual_ip,
@@ -31,10 +31,10 @@ def main():
                 raise Exception(r.text)
             else:
                 print(
-                    f'{datetime.now().isoformat()}\tupdated {actual_ip} {registered_ip}\n')
+                    f'{datetime.now().isoformat()}\tupdated {actual_ip} {registered_ip}')
     except Exception as e:
         isonow = datetime.now().isoformat()
-        print(f'{isonow}\t{e}\n')
+        print(f'{isonow}\t{e}')
 
 
 if __name__ == '__main__':
